@@ -61,7 +61,7 @@ SPDX-License-Identifier: Apache-2.0
 
 ---
 
-**FROM HERE CUSTOM CHANGES**
+# FROM HERE BOSCH CR CUSTOM CHANGES
 
 This snap has been modified to work in  `devmode` also add a bash app, which can be executed manually to open a bash terminal "into the snap".
 
