@@ -1,5 +1,5 @@
 name: ros2-simple-listener-cpp
-version: '2.2.1'
+version: '2.2.2'
 summary: Snap with simple ROS 2 listener - devmode
 description: |
   A simple ROS 2 listener which receives ROS 2 messages on topic 'ros2_simple_cpp'.
@@ -38,6 +38,10 @@ apps:
       restart-delay: 10s
   bash:
     command: usr/local/bin/bash
+    plugs:
+      - ros-base
+      - network
+      - network-bind
 
 plugs:
   ros-base:
