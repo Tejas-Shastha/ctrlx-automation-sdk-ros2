@@ -57,3 +57,25 @@ SPDX-FileCopyrightText: Copyright (c) 2023 Bosch Rexroth AG
 ## Licenses
 
 SPDX-License-Identifier: Apache-2.0
+
+
+---
+
+**FROM HERE CUSTOM CHANGES**
+
+This snap has been modified to work in  `devmode` also add a bash app, which can be executed manually to open a bash terminal "into the snap".
+
+Furthermore, a script has been added which sources the ROS2 environment properly in this new bash terminal. It can then be used for simple ROS2 introspection.
+
+How to use:
+1. Build the app same as before - using the original `build-snap-amd64.sh` script.
+1. Copy this snap manually into the CtrlX Core device. See [our wiki](https://github.boschdevcloud.com/bios-robotics/explore-docs/wiki/System-and-Network-Setup#how-to-ssh-into-the-core) on how to SSH or SCP.
+1. Open an SSH session into the core, and install this snap manually - ´sudo snap install --devmode ros2-simple-listener-cpp_2.2.x_amd64.snap`
+1. Verify if properly installed with `snap list`. The check if everything looks okay with `snap info ros2-simple-listener-cpp`.
+1. Check if the interface to the underlay snap `ros2-base-humble` is properly connected:
+  * Check curent conenction status via `snap connections ros2-simple-listener-cpp`. This should list the `ros-base` plug, which sould show the Plug interface `ros2-simple-listener-cpp:ros-base` and the Slot interface `ros2-base-humble:ros-base`. If the latter is instead `-`, it means the interface is not connected.
+  * You can manually connect it with the command `sudo snap connect ros2-simple-listener-cpp:ros-base ros2-base-humble:ros-base`.
+  * Check the connection again and it should be up. If you had to manually connect it, just restart the snap via the CtrlX web interface.
+1. Now open a shell into the listener snap by running the newly added app - `ros2-simple-listener-cpp.bash`
+1. In the new bash, source the ros2 env by running the new script - `source /snap/ros2-simple-listener-cpp/current/usr/bin/source-env`. It should echo `ROS2 Humble sourced!`.
+1. Now you can run CLI ros2 commands. If the talker snap is also running, you can echo its topic. (just retry a couple of time if you dont see the topic)
