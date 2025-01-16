@@ -1,5 +1,5 @@
 name: ros2-simple-listener-cpp
-version: '2.2.2'
+version: '2.2.3'
 summary: Snap with simple ROS 2 listener - devmode
 description: |
   A simple ROS 2 listener which receives ROS 2 messages on topic 'ros2_simple_cpp'.
@@ -20,6 +20,7 @@ parts:
     source: wrapper/
     organize:
       ./run-listener.sh : usr/bin/run-listener
+      ./source-env.sh : usr/bin/source-env
 
   gnu-bash:
     source: http://ftp.gnu.org/gnu/bash/bash-5.2.tar.gz
