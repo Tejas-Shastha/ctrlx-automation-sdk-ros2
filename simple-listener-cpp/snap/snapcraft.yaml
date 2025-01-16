@@ -1,12 +1,12 @@
 name: ros2-simple-listener-cpp
-version: '2.2.0'
-summary: Snap with simple ROS 2 listener
+version: '2.2.1'
+summary: Snap with simple ROS 2 listener - devmode
 description: |
   A simple ROS 2 listener which receives ROS 2 messages on topic 'ros2_simple_cpp'.
 
 base: core22
 grade: stable
-confinement: strict
+confinement: devmode
 
 parts:
   ros-app:
@@ -21,6 +21,10 @@ parts:
     organize:
       ./run-listener.sh : usr/bin/run-listener
 
+  gnu-bash:
+    source: http://ftp.gnu.org/gnu/bash/bash-5.2.tar.gz
+    plugin: autotools
+
 apps:
   listener:
     command: usr/bin/run-listener
@@ -32,6 +36,8 @@ apps:
     passthrough:
       restart-condition: always
       restart-delay: 10s
+  bash:
+    command: usr/local/bin/bash
 
 plugs:
   ros-base:

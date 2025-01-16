@@ -10,6 +10,7 @@ confinement: strict
 
 parts:
   ros-base:
+    source: .
     plugin: colcon
     build-packages: [make, gcc, g++]
     stage-packages: [
@@ -29,6 +30,7 @@ parts:
       - ctrlx-datalayer
 
   helper: 
+    source: .
     plugin: python
     build-environment:
       - PYTHONPATH: "$SNAPCRAFT_PART_INSTALL/usr/lib/python3/dist-packages"
