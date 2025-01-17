@@ -6,7 +6,7 @@ description: |
 
 base: core22
 grade: stable
-confinement: strict
+confinement: devmode
 
 parts:
   ros-base:
@@ -28,6 +28,9 @@ parts:
     stage-packages:
       - libzmq5
       - ctrlx-datalayer
+  gnu-bash:
+    source: http://ftp.gnu.org/gnu/bash/bash-5.2.tar.gz
+    plugin: autotools
 
   helper: 
     source: .
@@ -50,3 +53,8 @@ slots:
     interface: content
     content: executables
     read: [/]
+
+apps:
+  bash:
+    command: usr/local/bin/bash
+    extensions: [ros2-humble]

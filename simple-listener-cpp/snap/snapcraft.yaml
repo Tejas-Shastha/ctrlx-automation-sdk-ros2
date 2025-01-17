@@ -37,6 +37,7 @@ apps:
     passthrough:
       restart-condition: always
       restart-delay: 10s
+    extensions: [ros2-humble]
   bash:
     command: usr/local/bin/bash
     plugs:
