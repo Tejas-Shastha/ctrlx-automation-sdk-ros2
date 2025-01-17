@@ -30,6 +30,7 @@ apps:
     passthrough:
       restart-condition: always
       restart-delay: 10s
+    extensions: [ros2-humble]
 
 plugs:
   ros-base:
